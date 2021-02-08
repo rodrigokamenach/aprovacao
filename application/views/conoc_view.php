@@ -75,7 +75,11 @@ $(function(){
 	}
 	
 	function jVeAprovacao(emp, numapr, rotnap){    		
+<<<<<<< HEAD
 		//antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal			
+=======
+		//antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal					
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		carregaDadosAprovadores(emp, numapr, rotnap);    		
 		$('#mVeAprovador').modal('show');
 	}
@@ -180,7 +184,11 @@ $(function(){
 		    				<div class="col-sm-6">
 		    				<?php 		    					
 	    						foreach($filiais as $fil)
+<<<<<<< HEAD
 	        						$optfil[$fil->CODFIL] = $fil->CODFIL.' - '.$fil->USU_INSTAN.' - '.$fil->SIGFIL;
+=======
+	        						$optfil[$fil->CODFIL] = $fil->CODFIL.' - '.$fil->SIGFIL;
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 	    						echo form_dropdown('filial[]', $optfil, 'class="selectpicker"', 'id="filial" data-live-search="true" data-actions-box="true" multiple');
 							?>
 		    				</div>

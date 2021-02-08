@@ -12,11 +12,17 @@ class Conoc extends CI_Controller {
 		if($this->session->userdata('newadt')) {
 			$session_data = $this->session->userdata('newadt');
 			$data['usuario'] = $session_data['usuario'];
+<<<<<<< HEAD
 			$data['usu_permissoes'] = $session_data['usu_permissoes'];
 			$data['usu_filial'] = $session_data['usu_filial'];
 			$data['usu_email'] = $session_data['usu_email'];
 			$data['usu_codigo'] = $session_data['usu_codigo'];
 			$data['usu_area'] = $session_data['usu_area'];
+=======
+			$data['usu_permissoes'] = $session_data['usu_permissoes'];			
+			$data['usu_email'] = $session_data['usu_email'];
+			$data['usu_codigo'] = $session_data['usu_codigo'];			
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 	
 	
 			if (empty($dia)) {
@@ -25,7 +31,11 @@ class Conoc extends CI_Controller {
 				
 			$dados['filiais'] = $this->globals->lista_filial();
 			$dados['fornec'] = $this->globals->lista_fornec();
+<<<<<<< HEAD
                         $dados['users'] = $this->globals->lista_users();
+=======
+            $dados['users'] = $this->globals->lista_users();
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 	
 			$this->load->view('header_view', $data);
 			$this->load->view('conoc_view', $dados);
@@ -46,8 +56,13 @@ class Conoc extends CI_Controller {
 		$contapr =  $this->input->post('contapr');
 		$filial =  $this->input->post('filial[]');
 		$pedido = $this->input->post('pedido');
+<<<<<<< HEAD
                 $situacao = $this->input->post('situacao');
                 $aprovador = $this->input->post('aprovador');
+=======
+		$situacao = $this->input->post('situacao');
+		$aprovador = $this->input->post('aprovador');
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		$codfor = $this->input->post('fornecedor[]');
 		$session_data = $this->session->userdata('newadt');
 		$coduser = $session_data['usu_codigo'];
@@ -134,7 +149,11 @@ class Conoc extends CI_Controller {
 								$sub_fil_ped = 0;
 							}
 								
+<<<<<<< HEAD
 							$filial = array('data' => '<strong>'.$ped->CODFIL.' - '.$ped->SIGFIL.' '.$ped->USU_INSTAN.'</strong>', 'class' => 'info text-left', 'colspan' => 16);
+=======
+							$filial = array('data' => '<strong>'.$ped->CODFIL.' - '.$ped->SIGFIL.'</strong>', 'class' => 'info text-left', 'colspan' => 16);
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							$this->table->add_row($filial);
 						}
 						
@@ -198,6 +217,7 @@ class Conoc extends CI_Controller {
 						
 						}
                                                 
+<<<<<<< HEAD
                                                 if ($ped->SITOCP == 1) {
                                                     $status = 'Aberto Normal';
                                                     $pendente = '';
@@ -214,11 +234,33 @@ class Conoc extends CI_Controller {
                                                     $status = 'Não Fechado';                                                
                                                     $pendente = '<a href="javascript:;" onclick="jVePendente('.$ped->CODEMP.','.$ped->NUMAPR.',12,'.$ped->NUMOCP.','.$ped->CODFIL.')"><i class="fa fa-exclamation-triangle fa-2x"></i></a>';
                                                 }
+=======
+						if ($ped->SITOCP == 1) {
+							$status = 'Aberto Normal';
+							$pendente = '';
+						} elseif ($ped->SITOCP == 2) {
+							$status = 'Aberto Parcial';                                                
+							$pendente = '';
+						} elseif ($ped->SITOCP == 4) {
+							$status = 'Liquidado';                                                
+							$pendente = '';
+						} elseif ($ped->SITOCP == 5) {
+							$status = 'Cancelado';                                                
+							$pendente = '';
+						} elseif ($ped->SITOCP == 9) {
+							$status = 'Não Fechado';                                                
+							$pendente = '<a href="javascript:;" onclick="jVePendente('.$ped->CODEMP.','.$ped->NUMAPR.',12,'.$ped->NUMOCP.','.$ped->CODFIL.')"><i class="fa fa-exclamation-triangle fa-2x"></i></a>';
+						}
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 																														
 						$this->CI->table->add_row(								
 								'<a href="javascript:;" onclick="jVeItem('.$ped->NUMOCP.','.$ped->CODFIL.')">'.$ped->NUMOCP.'</a>',
 								$ped->DATEMI,
+<<<<<<< HEAD
                                                                 $status,
+=======
+								$status,
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 								'<p class="text-left">'.$ped->CODFOR.' - '.$ped->APEFOR.'</p>',
 								'<p class="text-right">'.number_format(str_replace("," , "." , $ped->VLRLIQ), 2, ',', '.').'</p>',
 								$ped->CODCPG.' - '.$ped->DESCPG,

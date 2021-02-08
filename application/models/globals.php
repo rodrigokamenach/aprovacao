@@ -3,7 +3,11 @@
 Class Globals extends CI_Model {
 
     function lista_filial() {
+<<<<<<< HEAD
         $query = $this->db->query("SELECT codfil, SIGFIL, USU_INSTAN FROM e070fil order by codfil");
+=======
+        $query = $this->db->query("SELECT codfil, SIGFIL FROM e070fil order by codfil");
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
         if ($query->num_rows() > 0) {
             return $query->result();
         } else {

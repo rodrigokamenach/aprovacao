@@ -59,6 +59,7 @@ Class Ocs extends CI_Model {
 			return false;
 		}
 		
+<<<<<<< HEAD
 	}
         
        /* function getApr($codemp, $coduser) {  ORIGINAL
@@ -87,6 +88,9 @@ Class Ocs extends CI_Model {
 		
 	}*/
 	
+=======
+	}              	
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 	
 	//VERIFICA OS CENTROS DE CUSTO DO APROVADOR
 	function getCcu($datapr, $coduser) {		
@@ -180,6 +184,7 @@ Class Ocs extends CI_Model {
 		}
 		
 		if($pedido != null) {
+<<<<<<< HEAD
                     if ($contapr != null) {
 			$condicao = "AND OC.NUMOCP = $pedido AND OC.SITAPR = '$contapr'";
                     } else {
@@ -195,6 +200,26 @@ Class Ocs extends CI_Model {
                     foreach ($checkccu as $key =>$row) {
                         //var_dump($key);                        
                         //var_dump($row);
+=======
+			if ($contapr != null) {
+				$condicao = "AND OC.NUMOCP = $pedido AND OC.SITAPR = '$contapr'";
+			} else {
+				$condicao = "AND OC.NUMOCP = $pedido";
+			}
+		}
+                //var_dump($condicao);
+		$condnivel = '';
+		$condicao_apr = '';
+		$sql = '';
+		var_dump($statusapr);
+		exit;
+			if ($checkccu) {
+                    //var_dump($checkccu);
+                    foreach ($checkccu as $key =>$row) {
+                        //var_dump($key);                        
+						var_dump($row);
+						if ($row[1] <> false) {
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                         foreach ($row as $rnap => $r) {
                             //var_dump($r);
                             $condicao_ccu = '';
@@ -256,8 +281,12 @@ Class Ocs extends CI_Model {
                             //exit();                                                                                                                        
                             $q1 = "select DISTINCT OC.CODEMP,
                                         OC.CODFIL,
+<<<<<<< HEAD
                                         FIL.SIGFIL,
                                         FIL.USU_INSTAN,								
+=======
+                                        FIL.SIGFIL,                                        							
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                                         OC.NUMOCP,
                                         TO_CHAR(OC.DATEMI, 'DD/MM/YYYY') DATEMI,
                                         OC.SITOCP,
@@ -277,8 +306,12 @@ Class Ocs extends CI_Model {
                                         TO_CHAR(PR.VCTPAR,'DD/MM/YYYY') VCTPAR,
                                         PR.VLRPAR,
                                         $rnap CODNAPAPR,
+<<<<<<< HEAD
                                         (SELECT ICP.DIAPAR FROM E028ICP ICP WHERE OC.CODEMP = ICP.CODEMP AND OC.CODCPG = ICP.CODCPG AND ICP.SEQICP = 1) DIAPAR,
                                         NVL((select distinct V.numpct from USU_VCOTOC V where V.numocp = OC.NUMOCP and V.filocp = OC.CODFIL),0) NUMPCT,
+=======
+                                        (SELECT ICP.DIAPAR FROM E028ICP ICP WHERE OC.CODEMP = ICP.CODEMP AND OC.CODCPG = ICP.CODCPG AND ICP.SEQICP = 1) DIAPAR,                                        
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                                         nvl((select max(seqobs) from e420obs o where o.numocp = OC.NUMOCP and o.codfil = OC.CODFIL),0) seqobs
                                         from E420OCP OC
                                         INNER JOIN E420RAT RAT
@@ -312,8 +345,12 @@ Class Ocs extends CI_Model {
                                         $condicao_apr
                                         GROUP BY OC.CODEMP,
                                         OC.CODFIL,
+<<<<<<< HEAD
                                         FIL.SIGFIL,
                                         FIL.USU_INSTAN,
+=======
+                                        FIL.SIGFIL,                                        
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                                         OC.NUMOCP,
                                         OC.DATEMI,
                                         OC.SITOCP,
@@ -339,7 +376,12 @@ Class Ocs extends CI_Model {
                             //echo $q1;                                                      
                             $sql .= $q1.' union all ';
                             //echo $sql;
+<<<<<<< HEAD
                         }                                                   
+=======
+						}   
+						}                                                
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                     }
                     $sql = substr_replace($sql, '', -10);
                     $query = $this->db->query("SELECT DISTINCT * FROM (".$sql ." ) ORDER BY 1,2,5");
@@ -418,16 +460,27 @@ Class Ocs extends CI_Model {
 				//exit();								
 					$q1 = $this->db->query("select OC.CODEMP,
 							OC.CODFIL,
+<<<<<<< HEAD
 							FIL.SIGFIL,
 							FIL.USU_INSTAN,
 							OC.NUMOCP,                                                        
 							TO_CHAR(OC.DATEMI, 'DD/MM/YYYY') DATEMI,
                                                         OC.SITOCP,
+=======
+							FIL.SIGFIL,							
+							OC.NUMOCP,                                                        
+							TO_CHAR(OC.DATEMI, 'DD/MM/YYYY') DATEMI,
+							OC.SITOCP,
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							OC.CODFOR,
 							FORN.APEFOR,
 							OC.OBSOCP,
 							OC.VLRLIQ,
+<<<<<<< HEAD
                                                         OC.VLRORI,
+=======
+							OC.VLRORI,
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							OC.CODUSU,
 							USU.NOMUSU,
 							OC.ROTNAP,
@@ -439,9 +492,14 @@ Class Ocs extends CI_Model {
 							OC.CODCPG,
 							CP.DESCPG,
 							TO_CHAR(PR.VCTPAR,'DD/MM/YYYY') VCTPAR,
+<<<<<<< HEAD
                                                         PR.VLRPAR,
                                                         (SELECT ICP.DIAPAR FROM E028ICP ICP WHERE OC.CODEMP = ICP.CODEMP AND OC.CODCPG = ICP.CODCPG AND ICP.SEQICP = 1) DIAPAR,
                                                         NVL((select distinct V.numpct from USU_VCOTOC V where V.numocp = OC.NUMOCP and V.filocp = OC.CODFIL),0) NUMPCT                                        
+=======
+							PR.VLRPAR,
+							(SELECT ICP.DIAPAR FROM E028ICP ICP WHERE OC.CODEMP = ICP.CODEMP AND OC.CODCPG = ICP.CODCPG AND ICP.SEQICP = 1) DIAPAR
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							from E420OCP OC
 							INNER JOIN E420RAT RAT
 							ON OC.CODEMP = RAT.CODEMP
@@ -462,25 +520,44 @@ Class Ocs extends CI_Model {
 							ON OC.CODEMP = CP.CODEMP
 							AND OC.CODCPG = CP.CODCPG
 							LEFT JOIN E420PAR PR
+<<<<<<< HEAD
                                                         ON OC.CODEMP = PR.CODEMP
                                                         AND OC.CODFIL = PR.CODFIL
                                                         AND OC.NUMOCP = PR.NUMOCP
                                                         AND PR.SEQPAR = 1
                                                         $inner
+=======
+							ON OC.CODEMP = PR.CODEMP
+							AND OC.CODFIL = PR.CODFIL
+							AND OC.NUMOCP = PR.NUMOCP
+							AND PR.SEQPAR = 1
+							$inner
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							where OC.CODEMP = $key						
 							$condicao							
 							GROUP BY OC.CODEMP,
 							OC.CODFIL,
+<<<<<<< HEAD
 							FIL.SIGFIL,
 							FIL.USU_INSTAN,
 							OC.NUMOCP,
 							OC.DATEMI,
                                                         OC.SITOCP,
+=======
+							FIL.SIGFIL,							
+							OC.NUMOCP,
+							OC.DATEMI,
+							OC.SITOCP,
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							OC.CODFOR,
 							FORN.APEFOR,
 							OC.OBSOCP,
 							OC.VLRLIQ,
+<<<<<<< HEAD
                                                         OC.VLRORI,
+=======
+							OC.VLRORI,
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							OC.CODUSU,
 							USU.NOMUSU,
 							OC.ROTNAP,
@@ -492,7 +569,11 @@ Class Ocs extends CI_Model {
 							OC.CODCPG,
 							CP.DESCPG,
 							PR.VCTPAR,
+<<<<<<< HEAD
                                                         PR.VLRPAR
+=======
+							PR.VLRPAR
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							ORDER BY 1,2,5");
 					$query[$key] = $q1->result();
 					//return false;
@@ -565,7 +646,11 @@ Class Ocs extends CI_Model {
 										  ON USU.CODEMP = NAP.CODEMP
 										  AND USU.ROTNAP = NAP.ROTNAP
 										  AND USU.NIVAPR = NAP.CODNAP
+<<<<<<< HEAD
 										  INNER JOIN R999USU USA
+=======
+										  INNER JOIN e099usu USA
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 										  ON USU.USUAPR = USA.CODUSU
 										  INNER JOIN E614APR APR
 										  ON USU.CODEMP = APR.CODEMP
@@ -583,6 +668,7 @@ Class Ocs extends CI_Model {
 	}
 	
 	function getPendente($codemp, $numapr, $rotnap, $numocp, $codfil) {
+<<<<<<< HEAD
 	
 		$query = $this->db->query("SELECT DISTINCT OC.CODEMP,
                 OC.CODFIL,
@@ -622,6 +708,80 @@ Class Ocs extends CI_Model {
 			   AND CNA.CODNAP NOT IN (SELECT APR.NIVAPR FROM e614usu APR WHERE APR.CODEMP = OC.CODEMP 
          								AND APR.ROTNAP = OC.ROTNAP AND APR.NUMAPR = OC.NUMAPR AND APR.SITAPR = 'APR')
 			 ORDER BY 1, 2, 3, 6, 7");
+=======
+		
+
+		$query = $this->db->query("SELECT * FROM (SELECT DISTINCT OC.CODEMP,
+		OC.CODFIL,
+		OC.NUMOCP,
+		OC.NUMAPR,
+		APR.NIVEXI,                
+		UNA.CODNAP,
+		NAP.DESNAP,
+		USU.CODUSU,
+		USU.NOMUSU,
+		OC.ROTNAP
+	  FROM E420OCP OC
+	 INNER JOIN E614APR APR
+		ON OC.CODEMP = APR.CODEMP
+	   AND OC.ROTNAP = APR.ROTNAP
+	   AND OC.NUMAPR = APR.NUMAPR      
+	 INNER JOIN E420RAT RAT
+		ON OC.CODEMP = RAT.CODEMP
+	   AND OC.CODFIL = RAT.CODFIL
+	   AND OC.NUMOCP = RAT.NUMOCP
+INNER JOIN E068UNA UNA
+ON OC.CODEMP = UNA.CODEMP
+AND OC.ROTNAP = UNA.ROTNAP        
+AND SITUNA = 'A'
+INNER JOIN E068NAP NAP
+		ON UNA.CODEMP = NAP.CODEMP
+	   AND UNA.ROTNAP = NAP.ROTNAP
+	   AND UNA.CODNAP = NAP.CODNAP
+ AND APR.NIVEXI LIKE '%' || NAP.CODNAP || '%'
+	 INNER JOIN E099USU USU
+		ON USU.CODUSU = UNA.CODUSU          
+union all       
+SELECT DISTINCT OC.CODEMP,
+		OC.CODFIL,
+		OC.NUMOCP,
+		OC.NUMAPR,
+		APR.NIVEXI,                
+		CNA.CODNAP,
+		NAP.DESNAP,
+		USU.CODUSU,
+		USU.NOMUSU,
+		OC.ROTNAP
+	  FROM E420OCP OC
+	 INNER JOIN E614APR APR
+		ON OC.CODEMP = APR.CODEMP
+	   AND OC.ROTNAP = APR.ROTNAP
+	   AND OC.NUMAPR = APR.NUMAPR      
+	 INNER JOIN E420RAT RAT
+		ON OC.CODEMP = RAT.CODEMP
+	   AND OC.CODFIL = RAT.CODFIL
+	   AND OC.NUMOCP = RAT.NUMOCP   
+INNER JOIN E068CNA CNA
+		ON OC.CODEMP = CNA.CODEMP
+	   AND OC.ROTNAP = CNA.ROTNAP
+	   AND RAT.CODCCU = CNA.CODCCU
+	   AND APR.NIVEXI LIKE '%' || CNA.CODNAP || '%'
+	   AND CNA.SITCNA = 'A'
+	 INNER JOIN E068NAP NAP
+		ON CNA.CODEMP = NAP.CODEMP
+	   AND CNA.ROTNAP = NAP.ROTNAP
+	   AND CNA.CODNAP = NAP.CODNAP
+	 LEFT JOIN E099USU USU
+		ON USU.CODUSU = CNA.CODUSU) A
+
+	 WHERE A.NUMOCP = $numocp
+	   AND A.CODFIL = $codfil
+	   AND A.NUMAPR = $numapr
+	   AND A.CODEMP = $codemp
+	   AND A.ROTNAP = $rotnap
+	   AND A.CODNAP NOT IN (SELECT APR.NIVAPR FROM e614usu APR WHERE APR.CODEMP = A.CODEMP AND APR.ROTNAP = A.ROTNAP AND APR.NUMAPR = A.NUMAPR AND APR.SITAPR = 'APR')			
+	ORDER BY 1, 2, 6, 8");
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		if($query -> num_rows() > 0) {
 			return $query->result();
 		} else {
@@ -946,7 +1106,11 @@ Class Ocs extends CI_Model {
                     $condicao .= "AND A.CODFIL IN ($filial_list)";
 		}
                 
+<<<<<<< HEAD
                 $query = $this->db->query("SELECT A.codfil, FIL.USU_INSTAN, A.claccu, translate( area.ABRCCU,
+=======
+                $query = $this->db->query("SELECT A.codfil, A.claccu, translate( area.ABRCCU,
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                                             'ÁÇÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕËÜáçéíóúàèìòùâêîôûãõëü',
                                             'ACEIOUAEIOUAEIOUAOEUaceiouaeiouaeiouaoeu')ABRCCU, A.vlrreal, B.vlrorc 
                                             FROM (SELECT to_char(ocp.datemi,'mm/yyyy') datemi, rat.codemp, rat.codfil, SUBSTR(ccu.claccu,1,1) claccu, replace(sum(rat.vlrrat),',','.') vlrreal 
@@ -1003,7 +1167,11 @@ Class Ocs extends CI_Model {
                     $condicao .= "AND A.CODFIL IN ($filial_list)";
 		}
                 
+<<<<<<< HEAD
                 $query = $this->db->query("SELECT A.codfil, FIL.USU_INSTAN, A.clafin, translate( area.ABRCTA,
+=======
+                $query = $this->db->query("SELECT A.codfil, A.clafin, translate( area.ABRCTA,
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                                             'ÁÇÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕËÜáçéíóúàèìòùâêîôûãõëü',
                                             'ACEIOUAEIOUAEIOUAOEUaceiouaeiouaeiouaoeu')ABRCTA, A.vlrreal, B.vlrorc 
                                             FROM (SELECT to_char(ocp.datemi,'mm/yyyy') datemi, rat.codemp, rat.codfil, SUBSTR(cta.clafin,1,1) clafin, replace(sum(rat.vlrrat),',','.') vlrreal 

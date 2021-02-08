@@ -10,11 +10,17 @@ class Home extends CI_Controller {
 	   if($this->session->userdata('newadt')) {
 	     $session_data = $this->session->userdata('newadt');	     
 	     $data['usuario'] = $session_data['usuario'];
+<<<<<<< HEAD
 	     $data['usu_permissoes'] = $session_data['usu_permissoes'];
 	     $data['usu_filial'] = $session_data['usu_filial'];
 	     $data['usu_email'] = $session_data['usu_email'];
 	     $data['usu_codigo'] = $session_data['usu_codigo'];
 	     $data['usu_area'] = $session_data['usu_area'];
+=======
+	     $data['usu_permissoes'] = $session_data['usu_permissoes'];	     
+	     $data['usu_email'] = $session_data['usu_email'];
+	     $data['usu_codigo'] = $session_data['usu_codigo'];	     
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 	     	     
 	     $this->load->view('header_view', $data);
 	     $this->load->view('home_view');

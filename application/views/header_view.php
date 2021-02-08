@@ -68,8 +68,12 @@
                                     <?php
                                     $data = $this->session->userdata('newadt');
                                     $username = $data['usuario'];
+<<<<<<< HEAD
                                     $permissoes = explode(';', $data['usu_permissoes']);
                                     $usu_filial = $data['usu_filial'];
+=======
+                                    $permissoes = explode(';', $data['usu_permissoes']);                                    
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                                     $usu_email = $data['usu_email'];
                                     $usu_codigo = $data['usu_codigo'];
                                     ?>

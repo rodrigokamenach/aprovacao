@@ -2,8 +2,13 @@
 Class User extends CI_Model {
 	function login($username) {	
 				
+<<<<<<< HEAD
 		$query = $this->db->query("SELECT a.codusu, a.nomusu, b.USU_NOMUSU  FROM r999usu a
 									left join (SELECT usu_tadtusu.USU_NOMUSU FROM usu_tadtusu) b
+=======
+		$query = $this->db->query("SELECT a.codusu, a.nomusu, b.USU_NOMUSU, b.usu_pass  FROM e099usu a
+									left join (SELECT usu_tadtusu.USU_NOMUSU, usu_tadtusu.usu_pass FROM usu_tadtusu) b
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 									on a.nomusu = b.USU_NOMUSU
 									WHERE nomusu = '$username'");		
 		if($query->num_rows() == 1) {
@@ -12,6 +17,21 @@ Class User extends CI_Model {
 			return false;
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	function autentica($username, $password) {
+		$query = $this->db->query("SELECT a.codusu, a.nomusu, b.USU_NOMUSU, b.usu_pass  FROM e099usu a
+									inner join (SELECT usu_tadtusu.USU_NOMUSU, usu_tadtusu.usu_pass FROM usu_tadtusu) b
+									on a.nomusu = b.USU_NOMUSU
+									WHERE nomusu = '$username' AND b.usu_pass = '$password'");		
+		if($query->num_rows() == 1) {
+			return $query->result_array();			
+		} else {
+			return false;
+		}
+	}
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 	
 	function getPermissao($nomuser) {
 		$query = $this->db->query("select * from usu_tadtusu where USU_NOMUSU = '$nomuser'");
@@ -32,7 +52,11 @@ Class User extends CI_Model {
 	}
 	
 	function busca_codusu($nomuser) {
+<<<<<<< HEAD
 		$query = $this->db->query("select CODUSU from r999usu where NOMUSU = '$nomuser'");
+=======
+		$query = $this->db->query("select CODUSU from e099usu where NOMUSU = '$nomuser'");
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		if($query -> num_rows() > 0) {
 			return $query->result_array();
 		} else {

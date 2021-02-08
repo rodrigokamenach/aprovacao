@@ -33,6 +33,7 @@ class VerifyLogin extends CI_Controller {
 	
 	function check_database($password) {
 		// Field validation succeeded. Validate against database
+<<<<<<< HEAD
 		$username = $this->input->post ( 'username' );
 		$userldap = htmlentities ( $this->input->post ( 'username' ) ) . '@gf.local';
 		$password = htmlentities ( $password );
@@ -57,6 +58,33 @@ class VerifyLogin extends CI_Controller {
 			$nomusu = $result [0] ['NOMUSU'];
 			$verifyusu = $result [0] ['USU_NOMUSU'];
 			$mailusu = $nomusu . '@grupofarias.com.br';
+=======
+		// VALIDAÇAO DO LDAP DESTIVADO 17/07/2019
+		$username = $this->input->post( 'username' );
+		// $userldap = htmlentities ( $this->input->post ( 'username' ) ) . '@jboc.local';
+		//$password = htmlentities($password);		
+		// $ldap_serv = 'ldap://193.169.0.5';
+		// $ldap_port = '389';
+		// $lc = ldap_connect ( $ldap_serv, $ldap_port );
+		// ldap_set_option ( $lc, LDAP_OPT_REFERRALS, 0 );
+		// ldap_set_option ( $lc, LDAP_OPT_PROTOCOL_VERSION, 3 );
+		// $ldapbind = ldap_bind ( $lc, $userldap, $password );
+		// var_dump($ldapbind);
+		// exit();
+		// if (!($ldapbind)) {			
+		// 	$this->form_validation->set_message ( 'check_database', '<div class="alert alert-danger">Usuário ou senha inválidos!</div>' );
+		// 	return false;
+		// } else {
+			$password = md5($password);			
+			// query the database
+			$result = $this->user->login($username);
+			// var_dump($result);
+			// exit();
+			$codusu = $result[0]['CODUSU'];
+			$nomusu = $result[0]['NOMUSU'];
+			$verifyusu = $result[0]['USU_NOMUSU'];
+			$mailusu = $nomusu . '@jotabasso.com.br';
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 			
 			if ($verifyusu == null) {
 				
@@ -64,6 +92,7 @@ class VerifyLogin extends CI_Controller {
 				$dados_usu = array (
 						$codusu,
 						$nomusu,
+<<<<<<< HEAD
 						'',
 						'',
 						$mailusu,
@@ -74,6 +103,17 @@ class VerifyLogin extends CI_Controller {
 				$sql = "INSERT INTO usu_tadtusu (USU_CODUSU ,USU_NOMUSU ,USU_KEYUSU ,USU_FILUSU ,USU_MAILUS ,USU_SISTEM ,USU_PERMIS) VALUES (?, ?, ?, ?, ?, ?, ?)";
 				
 				$cadastro = $this->user->inserir ( $sql, $dados_usu );
+=======
+						$mailusu,						
+						'APR',																		
+						'S;N;N;N',
+						$password
+				);
+				
+				$sql = "INSERT INTO usu_tadtusu (USU_CODUSU ,USU_NOMUSU ,USU_MAILUS ,USU_SISTEM ,USU_PERMIS, USU_PASS) VALUES (?, ?, ?, ?, ?, ?)";
+				
+				$cadastro = $this->user->inserir( $sql, $dados_usu );
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 				
 				if ($cadastro) {
 					$getPerm = $this->user->getPermissao ( $nomusu );
@@ -82,11 +122,17 @@ class VerifyLogin extends CI_Controller {
 						foreach ( $getPerm as $row ) {
 							$sess_array = array (
 									'usuario' => $row ['USU_NOMUSU'],
+<<<<<<< HEAD
 									'usu_permissoes' => $row ['USU_PERMIS'],
 									'usu_filial' => $row ['USU_FILUSU'],
 									'usu_email' => $row ['USU_MAILUS'],
 									'usu_codigo' => $row ['USU_CODUSU'],
 									'usu_area'	=> $row['USU_CODAREA']
+=======
+									'usu_permissoes' => $row ['USU_PERMIS'],									
+									'usu_email' => $row ['USU_MAILUS'],
+									'usu_codigo' => $row ['USU_CODUSU'],									
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 							);
 							$this->session->set_userdata ( 'newadt', $sess_array );
 						}
@@ -94,17 +140,27 @@ class VerifyLogin extends CI_Controller {
 					}
 				}
 			} else {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 				$getPerm = $this->user->getPermissao ( $nomusu );
 				if (strpos ( $getPerm [0] ['USU_SISTEM'], 'APR' ) !== false) {
 					$sess_array = array ();
 					foreach ( $getPerm as $row ) {
 						$sess_array = array (
 								'usuario' => $row ['USU_NOMUSU'],
+<<<<<<< HEAD
 								'usu_permissoes' => $row ['USU_PERMIS'],
 								'usu_filial' => $row ['USU_FILUSU'],
 								'usu_email' => $row ['USU_MAILUS'],
 								'usu_codigo' => $row ['USU_CODUSU'],
 								'usu_area'	=> $row['USU_CODAREA']
+=======
+								'usu_permissoes' => $row ['USU_PERMIS'],								
+								'usu_email' => $row ['USU_MAILUS'],
+								'usu_codigo' => $row ['USU_CODUSU']								
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 						);
 						$this->session->set_userdata ( 'newadt', $sess_array );
 					}
@@ -114,7 +170,11 @@ class VerifyLogin extends CI_Controller {
 					return false;
 				}
 			}
+<<<<<<< HEAD
 		}
+=======
+		// }
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 	}
 }
 ?>

@@ -12,12 +12,18 @@ class Oc extends CI_Controller {
 		if($this->session->userdata('newadt')) {
 			$session_data = $this->session->userdata('newadt');
 			$data['usuario'] = $session_data['usuario'];
+<<<<<<< HEAD
 			$data['usu_permissoes'] = $session_data['usu_permissoes'];
 			$data['usu_filial'] = $session_data['usu_filial'];
 			$data['usu_email'] = $session_data['usu_email'];
 			$data['usu_codigo'] = $session_data['usu_codigo'];
 			$data['usu_area'] = $session_data['usu_area'];
 
+=======
+			$data['usu_permissoes'] = $session_data['usu_permissoes'];			
+			$data['usu_email'] = $session_data['usu_email'];
+			$data['usu_codigo'] = $session_data['usu_codigo'];			
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 
 			if (empty($dia)) {
 				$dia = date('m/Y');
@@ -47,6 +53,7 @@ class Oc extends CI_Controller {
 		$pedido         = $this->input->post('pedido');		
 		$codfor         = $this->input->post('fornecedor[]');
 		$session_data   = $this->session->userdata('newadt');
+<<<<<<< HEAD
 		//$coduser = $session_data['usu_codigo'];
 		$coduser        = 556;
 				
@@ -61,12 +68,33 @@ class Oc extends CI_Controller {
                     $codfor_list = rtrim(implode("','", $codfor), ',');
 		} else {
                     $codfor_list = '';
+=======
+		$coduser = $session_data['usu_codigo'];
+		//$coduser        = 556;
+				
+		
+		if (!empty($filial)) {
+            $filial_list = rtrim(implode(',', $filial), ',');
+		} else {
+            $filial_list = '';
+		}
+			
+		if (!empty($codfor)) {
+            $codfor_list = rtrim(implode("','", $codfor), ',');
+		} else {
+            $codfor_list = '';
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		}
 		
 		$codemp = $this->ocs->getEmp($filial_list);
 		
+<<<<<<< HEAD
 		//var_dump($codemp);			
 		
+=======
+		// var_dump($codemp);			
+		// exit;
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		if (!empty($codemp)) {
 			$codemp_list = rtrim(implode(',', $codemp), ',');
 		} else {
@@ -74,10 +102,20 @@ class Oc extends CI_Controller {
 		}
 		
 		$statusapr = $this->ocs->getApr($codemp_list, $coduser);
+<<<<<<< HEAD
 		//var_dump($statusapr);
 		
 		if ($statusapr) {
 			$checkccu = $this->ocs->getCcu($statusapr, $coduser);
+=======
+		// var_dump($statusapr);
+        // exit;
+        
+		if ($statusapr) {
+            $checkccu = $this->ocs->getCcu($statusapr, $coduser);
+            // var_dump($checkccu);
+            // exit;
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		} else {
 			echo '<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Você não tem permissão de aprovador</div>';
 			exit();
@@ -129,7 +167,11 @@ class Oc extends CI_Controller {
 			);
 			$this->CI->table->set_template($tmpl);
 			
+<<<<<<< HEAD
 			$this->CI->table->set_heading('<a href="javascript:;" class="btn-sm btn-info" onclick="tudo()" id="selecionarTodos"><i class="fa fa-check-square-o fa-lg"></i></a>','OC', 'Data', 'Fornecedor', 'Valor', 'Tipo Pgto', 'Obs', 'Comprador', 'Vencimento', 'Prorrogação','Negociação', 'Aprovações', 'Pendentes');
+=======
+			$this->CI->table->set_heading('<a href="javascript:;" class="btn-sm btn-info" onclick="tudo()" id="selecionarTodos"><i class="fa fa-check-square-o fa-lg"></i></a>','OC', 'Data', 'Fornecedor', 'Valor', 'Tipo Pgto', 'Obs', 'Comprador', 'Vencimento', 'Prorrogação', 'Aprovações', 'Pendentes');
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 			
 			$tot_fil = 0;
 			$tot_ped = 0;
@@ -159,7 +201,11 @@ class Oc extends CI_Controller {
                                     );															
                                     $sub_fil_ped = 0;                                    
                                 }
+<<<<<<< HEAD
                                 $filial = array('data' => '<strong>'.$row->CODFIL.' - '.$row->SIGFIL.' '.$row->USU_INSTAN.'</strong>', 'class' => 'info text-left', 'colspan' => 16);
+=======
+                                $filial = array('data' => '<strong>'.$row->CODFIL.' - '.$row->SIGFIL.'</strong>', 'class' => 'info text-left', 'colspan' => 16);
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                                 $this->table->add_row($filial);
                             }
                             
@@ -332,6 +378,7 @@ class Oc extends CI_Controller {
                                 }
 
                             }
+<<<<<<< HEAD
                             
                             if ($row->NUMPCT <> 0) {
                                 $numpct = '<a href="http://grupofarias.comlink.com.br/www/#/negociacao/'.$row->NUMPCT.'" target="blanck" ><i class="far fa-handshake fa-2x"></i></a>';
@@ -340,6 +387,9 @@ class Oc extends CI_Controller {
                                 $numpct = '';
                             }
                             
+=======
+                                                                                    
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                             $this->CI->table->add_row(
                                 form_checkbox($check).form_input($dtemi).form_input($nap).form_input($niv).form_input($par).form_input($vlrpar).form_input($apr).form_input($seqobs),
                                 '<a href="javascript:;" onclick="jVeItem('.$row->NUMOCP.','.$row->CODFIL.','.$row->CODNAPAPR.','.$tempar.')">'.$row->NUMOCP.'</a>',
@@ -350,8 +400,12 @@ class Oc extends CI_Controller {
                                 '<p class="text-left"><a href="#" data-toggle="tooltip" data-placement="left" title="'.$row->OBSOCP.'">'.substr_replace($row->OBSOCP, '...', 30).'</a></p>',
                                 $row->CODUSU.'-'.$row->NOMUSU,
                                 $venclass,
+<<<<<<< HEAD
                                 $input,
                                 $numpct,                                                                
+=======
+                                $input,                                                                                                
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                                 '<a href="javascript:;" onclick="jVeAprovacao('.$row->CODEMP.','.$row->NUMAPR.',12)"><i class="fas fa-clipboard-check fa-2x"></i></a>',
                                 '<a href="javascript:;" onclick="jVePendente('.$row->CODEMP.','.$row->NUMAPR.',12,'.$row->NUMOCP.','.$row->CODFIL.')"><i class="fa fa-exclamation-triangle fa-2x"></i></a>'
                             );
@@ -414,7 +468,11 @@ class Oc extends CI_Controller {
 	}
 	
 	function busca_aprovador($emp, $numapr, $rotnap) {
+<<<<<<< HEAD
 		//list($pedido, $filial) = explode('-' , $codigo);
+=======
+        //list($pedido, $filial) = explode('-' , $codigo);        
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		$dados['result'] = $this->ocs->getAprovador($emp, $numapr, $rotnap);		
 		$this->load->view('aprovador_view', $dados);
 	}
@@ -439,7 +497,12 @@ class Oc extends CI_Controller {
 	}
 	
 	function busca_pendente($emp, $numapr, $rotnap, $numocp, $codfil) {
+<<<<<<< HEAD
 		//list($pedido, $filial) = explode('-' , $codigo);
+=======
+        //list($pedido, $filial) = explode('-' , $codigo);        
+
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 		$dados['result'] = $this->ocs->getPendente($emp, $numapr, $rotnap, $numocp, $codfil);
 		$this->load->view('pendente_view', $dados);
 	}

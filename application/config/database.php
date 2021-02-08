@@ -74,18 +74,33 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $tnsname = "(DESCRIPTION =
+<<<<<<< HEAD
     (ADDRESS = (PROTOCOL = TCP)(HOST =192.168.49.11)(PORT = 1521))
     (CONNECT_DATA =
       (SERVER = DEDICATED)
       (SERVICE_NAME = SENIOR)
     )
   )";
+=======
+(ADDRESS_LIST =
+  (ADDRESS = (PROTOCOL = TCP)(HOST = 129.144.183.39)(PORT = 1521))
+)
+(CONNECT_DATA =
+  (SERVICE_NAME = orcl.a492604.oraclecloud.internal)
+)
+)";
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => $tnsname,
+<<<<<<< HEAD
 	'username' => 'erp_senior',
 	'password' => 'gferpsenior',
+=======
+	'username' => 'sapiensh',
+	'password' => 'sapiensh',
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
 	'database' => '',
 	'dbdriver' => 'oci8',
 	'dbprefix' => '',

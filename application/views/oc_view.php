@@ -519,7 +519,11 @@
                         <div class="col-sm-6">
                             <?php
                             foreach ($filiais as $fil)
+<<<<<<< HEAD
                                 $optfil[$fil->CODFIL] = $fil->CODFIL . ' - ' . $fil->USU_INSTAN . ' - ' . $fil->SIGFIL;
+=======
+                                $optfil[$fil->CODFIL] = $fil->CODFIL . ' - ' . $fil->SIGFIL;
+>>>>>>> 3e2487da458faa8d13e32c3768c864bd97382f3e
                             echo form_dropdown('filial[]', $optfil, 'class="selectpicker"', 'id="filial" data-live-search="true" data-actions-box="true" multiple');
                             ?>
                         </div>
